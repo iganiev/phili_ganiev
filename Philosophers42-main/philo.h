@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:30:58 by iganiev           #+#    #+#             */
-/*   Updated: 2023/09/18 22:23:55 by alabdull         ###   ########.fr       */
+/*   Updated: 2023/09/20 21:18:18 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <stdint.h>
 
 typedef struct s_data
 {
@@ -55,6 +56,7 @@ long long			get_time(void);
 void				ft_usleep(int ms);
 void				ft_free(t_philo *philo, t_data *info);
 void				*ft_calloc(size_t count, size_t size);
+int					is_digit_string(const char *str);
 
 int					parse_args(int ac, char *av[]);
 void				get_data(t_data *info, int ac, char *av[]);
@@ -67,7 +69,7 @@ void				grab_forks(t_philo *philo);
 void				release_forks(t_philo *philo);
 int					is_eating(t_philo *philo);
 
-int					is_sleeping(t_philo *philo);
+int					is_sleeping_and_thinking(t_philo *philo);
 int					is_thinking(t_philo *philo);
 int					finished_meals(t_data *info, t_philo *philo);
 int					is_dead(t_data *info, t_philo *philo);

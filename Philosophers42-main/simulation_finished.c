@@ -3,24 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   simulation_finished.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iganiev <iganiev@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:34:34 by iganiev           #+#    #+#             */
-/*   Updated: 2023/09/14 19:40:25 by iganiev          ###   ########.fr       */
+/*   Updated: 2023/09/20 21:20:10 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	is_sleeping(t_philo *philo)
+int	is_sleeping_and_thinking(t_philo *philo)
 {
 	display_routine(philo->info, philo->philo_id, "is sleeping");
 	ft_usleep(philo->info->time_to_sleep);
-	return (0);
-}
-
-int	is_thinking(t_philo *philo)
-{
 	display_routine(philo->info, philo->philo_id, "is thinking");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:30:47 by iganiev           #+#    #+#             */
-/*   Updated: 2023/08/30 14:26:38 by iganiev          ###   ########.fr       */
+/*   Updated: 2023/09/20 21:14:19 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void	ft_usleep(int ms)
 void	ft_free(t_philo *philo, t_data *info)
 {
 	free(info->forks);
+	free(info->fork_state);
 	free(philo);
 }

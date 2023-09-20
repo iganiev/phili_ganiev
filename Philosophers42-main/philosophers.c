@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:30:37 by iganiev           #+#    #+#             */
-/*   Updated: 2023/09/15 11:49:34 by alabdull         ###   ########.fr       */
+/*   Updated: 2023/09/20 21:19:35 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+int	main(int ac, char *av[])
 {
 	t_data	info;
 	t_philo	*philo;

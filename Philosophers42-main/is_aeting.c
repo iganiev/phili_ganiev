@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_aeting.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:32:08 by iganiev           #+#    #+#             */
-/*   Updated: 2023/09/18 22:33:08 by alabdull         ###   ########.fr       */
+/*   Updated: 2023/09/20 21:12:05 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*buf;
-
-	if (size && SIZE_MAX / size < count)
-		return (NULL);
-	buf = (void *)malloc(count * size);
-	if (buf == NULL)
-		return (buf);
-	memset(buf, 0, count * size);
-	return (buf);
-}
 
 void	display_routine(t_data *info, int id, char *message)
 {
@@ -44,18 +31,14 @@ void	display_routine(t_data *info, int id, char *message)
 
 void	grab_forks(t_philo *philo)
 {
-	// pthread_mutex_lock(&(philo->info->lock));
-	// philo->info->fork_state[philo->left_fork] = 1;
-	// philo->info->fork_state[philo->right_fork] = 1;
-	// pthread_mutex_unlock(&(philo->info->lock));
 	if (philo->info->count_philo % 2 != 0
 		&& (philo->philo_id == philo->info->count_philo - 1))
 	{
 		pthread_mutex_lock(&(philo->info->forks[philo->right_fork]));
 		pthread_mutex_lock(&(philo->info->forks[philo->left_fork]));
 		pthread_mutex_lock(&(philo->info->lock));
-		philo->info->fork_state[philo->right_fork] = 1;
-		philo->info->fork_state[philo->left_fork] = 1;
+		philo->info->fork_state[philo->right_fork] = philo->philo_id;
+		philo->info->fork_state[philo->left_fork] = philo->philo_id;
 		pthread_mutex_unlock(&(philo->info->lock));
 	}
 	else
@@ -63,43 +46,32 @@ void	grab_forks(t_philo *philo)
 		pthread_mutex_lock(&(philo->info->forks[philo->left_fork]));
 		pthread_mutex_lock(&(philo->info->forks[philo->right_fork]));
 		pthread_mutex_lock(&(philo->info->lock));
-		philo->info->fork_state[philo->left_fork] = 1;
-		philo->info->fork_state[philo->right_fork] = 1;
+		philo->info->fork_state[philo->left_fork] = philo->philo_id;
+		philo->info->fork_state[philo->right_fork] = philo->philo_id;
 		pthread_mutex_unlock(&(philo->info->lock));
 	}
 }
 
 void	release_forks(t_philo *philo)
 {
-	// pthread_mutex_lock(&(philo->info->lock));
-	// philo->info->fork_state[philo->left_fork] = 0;
-	// philo->info->fork_state[philo->right_fork] = 0;
-	// pthread_mutex_unlock(&(philo->info->lock));
 	if (philo->info->count_philo % 2 != 0
 		&& (philo->philo_id == philo->info->count_philo - 1))
 	{
 		pthread_mutex_unlock(&(philo->info->forks[philo->right_fork]));
 		pthread_mutex_unlock(&(philo->info->forks[philo->left_fork]));
-		pthread_mutex_lock(&(philo->info->lock));
-		philo->info->fork_state[philo->right_fork] = 0;
-		philo->info->fork_state[philo->left_fork] = 0;
-		pthread_mutex_unlock(&(philo->info->lock));
 	}
 	else
 	{
 		pthread_mutex_unlock(&(philo->info->forks[philo->left_fork]));
 		pthread_mutex_unlock(&(philo->info->forks[philo->right_fork]));
-		pthread_mutex_lock(&(philo->info->lock));
-		philo->info->fork_state[philo->left_fork] = 0;
-		philo->info->fork_state[philo->right_fork] = 0;
-		pthread_mutex_unlock(&(philo->info->lock));
 	}
-	// ft_usleep(philo->info->time_to_eat);
 }
 
 int	is_eating(t_philo *philo)
 {
-	if (philo->info->count_philo != 1)
+	if (philo->info->count_philo != 1
+		&& philo->info->fork_state[philo->right_fork] != philo->philo_id
+		&& philo->info->fork_state[philo->left_fork] != philo->philo_id)
 	{
 		grab_forks(philo);
 		display_routine(philo->info, philo->philo_id, "has taken a fork");

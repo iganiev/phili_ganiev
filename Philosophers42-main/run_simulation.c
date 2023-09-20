@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_simulation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:38:48 by iganiev           #+#    #+#             */
-/*   Updated: 2023/09/14 21:53:04 by alabdull         ###   ########.fr       */
+/*   Updated: 2023/09/20 21:17:38 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	*philosopher(void *arg)
 		if (philo->info->count_meals > 0
 			&& philo->meal_count >= philo->info->count_meals)
 			return (NULL);
-		is_sleeping(philo);
-		is_thinking(philo);
+		is_sleeping_and_thinking(philo);
 	}
 	return (NULL);
 }

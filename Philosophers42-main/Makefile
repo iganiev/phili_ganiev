@@ -11,7 +11,7 @@
 # **************************************************************************** #
 NAME = philo
 
-SRC = philosophers.c utils.c is_aeting.c parsing.c run_simulation.c simulation_finished.c\
+SRC = philosophers.c utils.c utils2.c is_aeting.c parsing.c run_simulation.c simulation_finished.c\
 
 OBJ = $(SRC:.c=.o)
 

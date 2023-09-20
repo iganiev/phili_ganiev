@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alabdull <@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: iganiev <iganiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:28:31 by iganiev           #+#    #+#             */
-/*   Updated: 2023/09/18 22:24:43 by alabdull         ###   ########.fr       */
+/*   Updated: 2023/09/20 21:04:48 by iganiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	parse_args(int ac, char *av[])
 		return (-1);
 	}
 	i = 1;
-	while (av[i])
+	while (i < ac)
 	{
-		if (philo_atoi(av[i]) <= 0)
+		if (!is_digit_string(av[i]) || philo_atoi(av[i]) <= 0)
 		{
 			printf("Error: Invalid arguments.\n");
 			return (-1);
